@@ -56,22 +56,35 @@ export function Profile() {
 
         {/* 使い方説明 */}
         <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-bold text-sky-800 mb-4">✨ 新機能</h2>
+          <h2 className="text-xl font-bold text-sky-800 mb-4 flex items-center gap-2">
+            <svg className="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            新機能
+          </h2>
           <ul className="space-y-3 text-gray-700">
             <li className="flex items-start gap-2">
-              <span className="text-sky-600 font-bold">✅</span>
+              <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span>プロフィール画像をアップロードできるようになりました</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-sky-600 font-bold">✅</span>
+              <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span>走行記録が自動的に保存されます</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-sky-600 font-bold">✅</span>
+              <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span>完了時に励ましメッセージが表示されます</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-sky-600 font-bold">✅</span>
+              <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
               <span>履歴画面で過去の記録を確認できます</span>
             </li>
           </ul>

@@ -138,14 +138,18 @@ export function History() {
         {/* 記録一覧 */}
         {filteredRecords.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-12 text-center">
-            <div className="text-6xl mb-4">🏃</div>
-            <p className="text-gray-600 text-lg mb-2">
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-sky-50 flex items-center justify-center">
+              <svg className="w-12 h-12 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <p className="text-gray-600 text-lg mb-2 font-medium">
               {filter === 'all'
                 ? 'まだ記録がありません'
                 : 'この期間の記録がありません'}
             </p>
             <p className="text-gray-500 text-sm">
-              ランニングを開始して、記録を保存しましょう！
+              ランニングを開始して、記録を保存しましょう
             </p>
           </div>
         ) : (

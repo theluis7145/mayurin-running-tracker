@@ -138,13 +138,33 @@ export function Home() {
         {/* GPS使用の説明（初回のみ） */}
         {status === 'idle' && (
           <div className="mx-4 mt-6 p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold text-sky-800 mb-2">💡 使い方</h3>
+            <h3 className="text-lg font-semibold text-sky-800 mb-3 flex items-center gap-2">
+              <svg className="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              使い方
+            </h3>
             <ul className="space-y-2 text-sm text-gray-700">
-              <li>• スタートボタンを押すとGPS追跡が開始されます</li>
-              <li>• 走行ルートがリアルタイムで地図に表示されます</li>
-              <li>• 距離とペースが自動的に計算されます</li>
-              <li>• 一時停止後、終了ボタンで記録を保存します</li>
-              <li>• 完了時に励ましメッセージが表示されます</li>
+              <li className="flex items-start gap-2">
+                <span className="text-sky-600 font-bold mt-0.5">1.</span>
+                <span>スタートボタンを押すとGPS追跡が開始されます</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sky-600 font-bold mt-0.5">2.</span>
+                <span>走行ルートがリアルタイムで地図に表示されます</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sky-600 font-bold mt-0.5">3.</span>
+                <span>距離とペースが自動的に計算されます</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sky-600 font-bold mt-0.5">4.</span>
+                <span>一時停止後、終了ボタンで記録を保存します</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-sky-600 font-bold mt-0.5">5.</span>
+                <span>完了時に励ましメッセージが表示されます</span>
+              </li>
             </ul>
           </div>
         )}

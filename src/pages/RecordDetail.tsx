@@ -36,8 +36,12 @@ export function RecordDetail() {
       <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 pb-20">
         <div className="max-w-2xl mx-auto p-6">
           <div className="bg-white rounded-lg shadow-md p-12 text-center">
-            <div className="text-6xl mb-4">😕</div>
-            <p className="text-gray-600 text-lg">記録が見つかりませんでした</p>
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <p className="text-gray-600 text-lg font-medium">記録が見つかりませんでした</p>
             <button
               onClick={handleBack}
               className="mt-6 px-6 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"

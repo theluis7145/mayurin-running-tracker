@@ -49,44 +49,48 @@ export function CompletionModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-bounce-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 animate-in fade-in duration-200">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300">
         {/* ヘッダー */}
         <div className={`bg-gradient-to-r ${getCategoryColor()} text-white p-6 text-center`}>
-          <div className="text-5xl mb-2">🎉</div>
-          <h2 className="text-2xl font-bold">完走おめでとう！</h2>
+          <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold">完走おめでとうございます</h2>
         </div>
 
         {/* メッセージ */}
         <div className="p-6">
-          <div className="bg-gradient-to-r from-sky-50 to-sun-50 rounded-lg p-4 mb-6">
+          <div className="bg-gradient-to-r from-sky-50 to-sun-50 rounded-lg p-4 mb-6 border border-gray-100">
             <p className="text-lg text-gray-800 text-center leading-relaxed">{message.text}</p>
           </div>
 
           {/* 統計情報 */}
           <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
               <div className="text-2xl font-bold text-sky-700">{formatTime(duration)}</div>
-              <div className="text-xs text-gray-500 mt-1">タイム</div>
+              <div className="text-xs text-gray-500 mt-1 font-medium">タイム</div>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
               <div className="text-2xl font-bold text-sky-700">{formatDistance(distance)}</div>
-              <div className="text-xs text-gray-500 mt-1">距離</div>
+              <div className="text-xs text-gray-500 mt-1 font-medium">距離</div>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
               <div className="text-2xl font-bold text-sky-700">{formatPace(pace)}</div>
-              <div className="text-xs text-gray-500 mt-1">平均ペース</div>
+              <div className="text-xs text-gray-500 mt-1 font-medium">平均ペース</div>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
               <div className="text-2xl font-bold text-sky-700">{lapsCount}</div>
-              <div className="text-xs text-gray-500 mt-1">ラップ数</div>
+              <div className="text-xs text-gray-500 mt-1 font-medium">ラップ数</div>
             </div>
           </div>
 
           {/* 閉じるボタン */}
           <button
             onClick={onClose}
-            className="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95 transition-all duration-200"
+            className="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:from-sky-600 hover:to-sky-700 active:scale-[0.98] transition-all duration-200"
           >
             記録を確認する
           </button>
