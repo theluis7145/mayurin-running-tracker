@@ -1,4 +1,4 @@
-import { formatTime, formatDistance, formatPace } from '../utils/format';
+import { formatTimeSimple, formatDistance, formatSpeed } from '../utils/format';
 import { getRandomMessage } from '../data/encourageMessages';
 import { useState, useEffect } from 'react';
 
@@ -70,7 +70,7 @@ export function CompletionModal({
           {/* 統計情報 */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
             <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
-              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatTime(duration)}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatTimeSimple(duration)}</div>
               <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">タイム</div>
             </div>
             <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
@@ -78,8 +78,8 @@ export function CompletionModal({
               <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">距離</div>
             </div>
             <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
-              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatPace(pace)}</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">平均ペース</div>
+              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatSpeed(pace)} km/h</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">平均時速</div>
             </div>
             <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
               <div className="text-2xl sm:text-3xl font-bold text-sky-700">{lapsCount}</div>

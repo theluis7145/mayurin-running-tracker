@@ -16,6 +16,20 @@ export function formatTime(milliseconds: number): string {
 }
 
 /**
+ * ミリ秒をHH:MM:SS形式にフォーマット（ミリ秒なし）
+ */
+export function formatTimeSimple(milliseconds: number): string {
+  const totalSeconds = Math.floor(milliseconds / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return `${hours.toString().padStart(2, '0')}:${minutes
+    .toString()
+    .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+/**
  * 距離をフォーマット（km単位）
  */
 export function formatDistance(km: number): string {
@@ -37,6 +51,20 @@ export function formatPace(minutesPerKm: number): string {
   const seconds = Math.round((minutesPerKm - minutes) * 60);
 
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+/**
+ * 時速をフォーマット（km/h、小数点第1位まで）
+ */
+export function formatSpeed(minutesPerKm: number): string {
+  if (!isFinite(minutesPerKm) || minutesPerKm <= 0) {
+    return '--';
+  }
+
+  // 時速 = 60 / (分/km)
+  const kmPerHour = 60 / minutesPerKm;
+
+  return kmPerHour.toFixed(1);
 }
 
 /**
