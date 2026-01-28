@@ -92,7 +92,7 @@ export function CompletionModal({
             onClick={onClose}
             className="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:from-sky-600 hover:to-sky-700 active:scale-[0.98] transition-all duration-200"
           >
-            記録を確認する
+            閉じる
           </button>
         </div>
       </div>
