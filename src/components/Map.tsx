@@ -44,7 +44,7 @@ export function Map({ coordinates, currentPosition, className = '' }: MapProps) 
   const currentPositionIcon = new Icon({
     iconUrl: 'data:image/svg+xml;base64,' + btoa(`
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="8" fill="#3b82f6" stroke="white" stroke-width="2"/>
+        <circle cx="12" cy="12" r="8" fill="#60a5fa" stroke="white" stroke-width="2"/>
         <circle cx="12" cy="12" r="4" fill="white"/>
       </svg>
     `),
@@ -63,12 +63,12 @@ export function Map({ coordinates, currentPosition, className = '' }: MapProps) 
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
         />
 
         {/* 走行ルート */}
         {positions.length > 1 && (
-          <Polyline positions={positions} color="#3b82f6" weight={4} opacity={0.7} />
+          <Polyline positions={positions} color="#60a5fa" weight={5} opacity={0.9} />
         )}
 
         {/* 現在位置マーカー */}
@@ -85,7 +85,7 @@ export function Map({ coordinates, currentPosition, className = '' }: MapProps) 
 
       {/* GPS精度表示 */}
       {currentPosition && (
-        <div className="absolute top-2 right-2 bg-white px-3 py-1 rounded-full shadow-md text-xs text-gray-600">
+        <div className="absolute top-2 right-2 bg-gray-900 bg-opacity-80 px-3 py-1 rounded-full shadow-md text-xs text-white">
           精度: ±{Math.round(currentPosition.accuracy)}m
         </div>
       )}
