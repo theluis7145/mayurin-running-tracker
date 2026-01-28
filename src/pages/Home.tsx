@@ -154,23 +154,23 @@ export function Home() {
             <ul className="space-y-4 text-sm text-gray-300">
               <li className="flex items-start gap-3">
                 <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">1</span>
-                <span>Press START to begin GPS tracking</span>
+                <span>STARTボタンを押すとGPS追跡が開始されます</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">2</span>
-                <span>Distance is automatically calculated</span>
+                <span>走行距離が自動的に計算されます</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">3</span>
-                <span>Record lap times with LAP button</span>
+                <span>LAPボタンで区間タイムを記録できます</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">4</span>
-                <span>Pause, then FINISH to save your run</span>
+                <span>一時停止後、FINISHボタンで記録を保存します</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">5</span>
-                <span>View route map in History</span>
+                <span>履歴画面で走行ルートの地図を確認できます</span>
               </li>
             </ul>
           </div>

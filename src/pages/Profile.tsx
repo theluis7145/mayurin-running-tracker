@@ -64,31 +64,31 @@ export function Profile() {
               <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Track your runs with GPS</span>
+              <span>GPSでランニングを記録</span>
             </li>
             <li className="flex items-start gap-3">
               <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Automatically calculate distance & speed</span>
+              <span>距離と時速を自動計算</span>
             </li>
             <li className="flex items-start gap-3">
               <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Record lap times</span>
+              <span>ラップタイムを記録</span>
             </li>
             <li className="flex items-start gap-3">
               <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>View your route on the map</span>
+              <span>地図で走行ルートを確認</span>
             </li>
             <li className="flex items-start gap-3">
               <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Browse your running history</span>
+              <span>過去の記録を閲覧</span>
             </li>
           </ul>
         </div>
