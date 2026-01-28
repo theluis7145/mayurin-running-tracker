@@ -11,6 +11,13 @@ import { LapList } from '../components/LapList';
 import { Map } from '../components/Map';
 import { CompletionModal } from '../components/CompletionModal';
 
+interface CompletionData {
+  duration: number;
+  distance: number;
+  pace: number;
+  lapsCount: number;
+}
+
 export function Home() {
   const { elapsedTime, status, laps, start, pause, reset, recordLap } = useTimer();
   const {
@@ -28,6 +35,12 @@ export function Home() {
 
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [startTime, setStartTime] = useState<string | null>(null);
+  const [completionData, setCompletionData] = useState<CompletionData>({
+    duration: 0,
+    distance: 0,
+    pace: 0,
+    lapsCount: 0,
+  });
 
   // 距離とペースを計算
   const distance = useMemo(() => calculateTotalDistance(coordinates), [coordinates]);
@@ -74,6 +87,14 @@ export function Home() {
         coordinates,
       };
 
+      // 完了時のデータを保存（リセット前に）
+      setCompletionData({
+        duration: elapsedTime,
+        distance,
+        pace,
+        lapsCount: laps.length,
+      });
+
       saveRunRecord(record);
       setShowCompletionModal(true);
     }
@@ -95,7 +116,7 @@ export function Home() {
         {/* GPS エラー表示 */}
         {gpsError && (
           <div className="mx-4 mt-4 p-3 bg-sunset-100 border border-sunset-300 rounded-lg text-sunset-800 text-sm">
-            <span className="font-semibold">⚠️ GPS エラー:</span> {gpsError}
+            <span className="font-semibold">警告:</span> {gpsError}
           </div>
         )}
 
@@ -173,10 +194,10 @@ export function Home() {
         <CompletionModal
           isOpen={showCompletionModal}
           onClose={handleCloseModal}
-          duration={elapsedTime}
-          distance={distance}
-          pace={pace}
-          lapsCount={laps.length}
+          duration={completionData.duration}
+          distance={completionData.distance}
+          pace={completionData.pace}
+          lapsCount={completionData.lapsCount}
         />
       </div>
     </div>
