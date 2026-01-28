@@ -122,11 +122,11 @@ export function Home() {
 
         {/* 地図表示（一時停止中のみ、デスクトップでは常に表示） */}
         {status !== 'idle' && coordinates.length > 0 && (
-          <div className={`px-4 pt-4 ${status === 'running' ? 'hidden md:block' : ''}`}>
+          <div className={`px-4 pt-3 ${status === 'running' ? 'hidden md:block' : ''}`}>
             <Map
               coordinates={coordinates}
               currentPosition={currentPosition}
-              className="h-64 md:h-80"
+              className={`${status === 'paused' ? 'h-40 sm:h-48' : 'h-64'} md:h-80`}
             />
           </div>
         )}
@@ -136,7 +136,7 @@ export function Home() {
 
         {/* 統計表示 */}
         {status !== 'idle' && (
-          <div className="flex justify-center py-3 px-4">
+          <div className="flex justify-center py-2 px-4">
             <div className="text-center min-w-[100px]">
               <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-sky-700 mb-1">
                 {formatDistance(distance)}

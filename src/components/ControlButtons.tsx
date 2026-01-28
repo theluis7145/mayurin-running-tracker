@@ -16,7 +16,7 @@ export function ControlButtons({
   onLap,
 }: ControlButtonsProps) {
   return (
-    <div className="flex flex-col items-center gap-4 py-4 sm:py-6 md:py-8 px-4">
+    <div className="flex flex-col items-center gap-3 py-3 sm:py-4 md:py-8 px-4">
       {/* メインボタン */}
       <div className="flex gap-4 sm:gap-6">
         {status === 'idle' && (
