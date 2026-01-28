@@ -11,10 +11,10 @@ export function LapList({ laps }: LapListProps) {
   }
 
   return (
-    <div className="mt-6 px-4">
+    <div className="mt-4 px-4 pb-4">
       <h3 className="text-lg sm:text-xl font-semibold text-sky-800 mb-3">ラップ記録</h3>
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="max-h-64 sm:max-h-80 overflow-y-auto">
+        <div className="max-h-48 sm:max-h-64 overflow-y-auto">
           {[...laps].reverse().map((lap) => (
             <div
               key={lap.lapNumber}

@@ -3,9 +3,9 @@ import { useTimer } from '../hooks/useTimer';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { calculateTotalDistance, calculatePace } from '../utils/distance';
 import { saveRunRecord } from '../utils/storage';
+import { formatDistance } from '../utils/format';
 import { RunRecord } from '../types';
 import { Timer } from '../components/Timer';
-import { StatsDisplay } from '../components/StatsDisplay';
 import { ControlButtons } from '../components/ControlButtons';
 import { LapList } from '../components/LapList';
 import { Map } from '../components/Map';
@@ -120,9 +120,9 @@ export function Home() {
           </div>
         )}
 
-        {/* 地図表示（走行中のみ） */}
+        {/* 地図表示（一時停止中のみ、デスクトップでは常に表示） */}
         {status !== 'idle' && coordinates.length > 0 && (
-          <div className="px-4 pt-4">
+          <div className={`px-4 pt-4 ${status === 'running' ? 'hidden md:block' : ''}`}>
             <Map
               coordinates={coordinates}
               currentPosition={currentPosition}
@@ -135,7 +135,16 @@ export function Home() {
         <Timer elapsedTime={elapsedTime} />
 
         {/* 統計表示 */}
-        {status !== 'idle' && <StatsDisplay distance={distance} pace={pace} />}
+        {status !== 'idle' && (
+          <div className="flex justify-center py-3 px-4">
+            <div className="text-center min-w-[100px]">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-sky-700 mb-1">
+                {formatDistance(distance)}
+              </div>
+              <div className="text-sm sm:text-base text-gray-500 font-medium">距離</div>
+            </div>
+          </div>
+        )}
 
         {/* コントロールボタン */}
         <ControlButtons
@@ -145,13 +154,6 @@ export function Home() {
           onReset={handleReset}
           onLap={() => recordLap(distance, pace)}
         />
-
-        {/* GPS情報（開発用） */}
-        {status !== 'idle' && (
-          <div className="px-4 text-xs text-gray-500 text-center">
-            GPS: {isTracking ? '追跡中' : '停止'} | 座標数: {coordinates.length}
-          </div>
-        )}
 
         {/* ラップ一覧 */}
         <LapList laps={laps} />
