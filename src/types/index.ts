@@ -35,3 +35,16 @@ export interface RunRecord {
 
 // タイマーの状態
 export type TimerStatus = 'idle' | 'running' | 'paused';
+
+// 認証ユーザー情報
+export interface AuthUser {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+}
+
+// 認証エラー
+export interface AuthError {
+  code: string;
+  message: string;
+}

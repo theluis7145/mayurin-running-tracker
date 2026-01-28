@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTimer } from '../hooks/useTimer';
 import { useGeolocation } from '../hooks/useGeolocation';
+import { useAuth } from '../contexts/AuthContext';
 import { calculateTotalDistance, calculatePace } from '../utils/distance';
-import { saveRunRecord } from '../utils/storage';
+import { saveRunRecord as saveRunRecordToFirestore } from '../utils/firestore';
 import { formatDistance } from '../utils/format';
 import { RunRecord } from '../types';
 import { Timer } from '../components/Timer';
@@ -18,6 +19,7 @@ interface CompletionData {
 }
 
 export function Home() {
+  const { user } = useAuth();
   const { elapsedTime, status, laps, start, pause, reset, recordLap } = useTimer();
   const {
     coordinates,
@@ -70,9 +72,9 @@ export function Home() {
   };
 
   // タイマーのリセット（記録を保存）
-  const handleReset = () => {
+  const handleReset = async () => {
     // 記録を保存（走行時間が5秒以上の場合のみ）
-    if (elapsedTime >= 5000 && startTime) {
+    if (elapsedTime >= 5000 && startTime && user) {
       const endTime = new Date().toISOString();
       const record: RunRecord = {
         id: crypto.randomUUID(),
@@ -93,7 +95,8 @@ export function Home() {
         lapsCount: laps.length,
       });
 
-      saveRunRecord(record);
+      // Firestoreに保存
+      await saveRunRecordToFirestore(user.uid, record);
       setShowCompletionModal(true);
     }
 

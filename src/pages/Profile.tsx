@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../hooks/useProfile';
+import { useAuth } from '../contexts/AuthContext';
 import { ProfileImagePicker } from '../components/ProfileImagePicker';
 
 export function Profile() {
   const { profile, updateNickname, updateAvatar } = useProfile();
+  const { signOut, user } = useAuth();
+  const navigate = useNavigate();
   const [nickname, setNickname] = useState(profile.nickname);
 
   const handleSave = () => {
@@ -15,6 +19,13 @@ export function Profile() {
 
   const handleImageSelect = (base64: string) => {
     updateAvatar(base64);
+  };
+
+  const handleLogout = async () => {
+    if (confirm('ログアウトしますか？')) {
+      await signOut();
+      navigate('/login');
+    }
   };
 
   return (
@@ -52,6 +63,25 @@ export function Profile() {
           >
             SAVE PROFILE
           </button>
+        </div>
+
+        {/* アカウント情報とログアウト */}
+        <div className="mt-8 bg-gray-900 rounded-3xl p-8 border border-gray-800">
+          <h2 className="text-sm font-bold text-gray-400 mb-6 tracking-wider">
+            ACCOUNT
+          </h2>
+          <div className="space-y-4">
+            <div>
+              <p className="text-xs text-gray-500 mb-1">Email</p>
+              <p className="text-white">{user?.email}</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="w-full py-4 bg-gray-800 text-white font-bold rounded-full hover:bg-gray-700 active:scale-95 transition-all duration-150 tracking-wide border border-gray-700"
+            >
+              LOGOUT
+            </button>
+          </div>
         </div>
 
         {/* 使い方説明 */}

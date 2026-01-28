@@ -1,37 +1,60 @@
 import { useState, useEffect } from 'react';
 import { UserProfile } from '../types';
-import { loadProfile, saveProfile } from '../utils/storage';
+import { useAuth } from '../contexts/AuthContext';
+import { saveUserProfile, subscribeToProfile } from '../utils/firestore';
 
 export function useProfile() {
+  const { user } = useAuth();
   const [profile, setProfile] = useState<UserProfile>({
-    nickname: 'ランナー',
+    nickname: user?.displayName || 'ランナー',
   });
+  const [loading, setLoading] = useState(true);
 
-  // 初期ロード
+  // プロフィールのリアルタイム監視
   useEffect(() => {
-    const loaded = loadProfile();
-    if (loaded) {
-      setProfile(loaded);
+    if (!user) {
+      setLoading(false);
+      return;
     }
-  }, []);
+
+    // Firestoreからプロフィールをリアルタイム監視
+    const unsubscribe = subscribeToProfile(user.uid, (firestoreProfile) => {
+      if (firestoreProfile) {
+        setProfile(firestoreProfile);
+      } else {
+        // Firestoreにプロフィールがない場合はデフォルト値を設定
+        setProfile({
+          nickname: user.displayName || 'ランナー',
+        });
+      }
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, [user]);
 
   // ニックネームを更新
-  const updateNickname = (nickname: string) => {
+  const updateNickname = async (nickname: string) => {
+    if (!user) return;
+
     const updated = { ...profile, nickname };
     setProfile(updated);
-    saveProfile(updated);
+    await saveUserProfile(user.uid, updated);
   };
 
   // アバターを更新
-  const updateAvatar = (avatarBase64?: string) => {
+  const updateAvatar = async (avatarBase64?: string) => {
+    if (!user) return;
+
     const updated = { ...profile, avatarBase64 };
     setProfile(updated);
-    saveProfile(updated);
+    await saveUserProfile(user.uid, updated);
   };
 
   return {
     profile,
     updateNickname,
     updateAvatar,
+    loading,
   };
 }

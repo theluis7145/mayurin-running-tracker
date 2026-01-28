@@ -1,28 +1,34 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { RunRecord } from '../types';
-import { getRunRecordById, deleteRunRecord } from '../utils/storage';
+import { useAuth } from '../contexts/AuthContext';
+import { loadRunRecord, deleteRunRecord as deleteRunRecordFromFirestore } from '../utils/firestore';
 import { formatDate, formatTimeOfDay, formatTime, formatDistance, formatSpeed } from '../utils/format';
 import { Map } from '../components/Map';
 import { LapList } from '../components/LapList';
 
 export function RecordDetail() {
   const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [record, setRecord] = useState<RunRecord | null>(null);
 
   useEffect(() => {
-    if (id) {
-      const loaded = getRunRecordById(id);
-      setRecord(loaded);
-    }
-  }, [id]);
+    const fetchRecord = async () => {
+      if (id && user) {
+        const loaded = await loadRunRecord(user.uid, id);
+        setRecord(loaded);
+      }
+    };
 
-  const handleDelete = () => {
-    if (!record) return;
+    fetchRecord();
+  }, [id, user]);
+
+  const handleDelete = async () => {
+    if (!record || !user) return;
 
     if (window.confirm('この記録を削除してもよろしいですか？')) {
-      deleteRunRecord(record.id);
+      await deleteRunRecordFromFirestore(user.uid, record.id);
       navigate('/history');
     }
   };

@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { loadRunRecords, deleteRunRecord } from '../utils/storage';
+import { useAuth } from '../contexts/AuthContext';
+import { subscribeToRunRecords, deleteRunRecord } from '../utils/firestore';
 import { RunRecord } from '../types';
 import { HistoryCard } from '../components/HistoryCard';
 import { formatDistance } from '../utils/format';
@@ -23,16 +24,22 @@ const filterOptions: FilterOption[] = [
 ];
 
 export function History() {
+  const { user } = useAuth();
   const [records, setRecords] = useState<RunRecord[]>([]);
   const [filter, setFilter] = useState<FilterType>('all');
 
-  // 記録を読み込み
+  // Firestoreから記録をリアルタイム監視
   useEffect(() => {
-    const loaded = loadRunRecords();
-    // 新しい順にソート
-    loaded.sort((a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime());
-    setRecords(loaded);
-  }, []);
+    if (!user) {
+      return;
+    }
+
+    const unsubscribe = subscribeToRunRecords(user.uid, (firestoreRecords) => {
+      setRecords(firestoreRecords);
+    });
+
+    return unsubscribe;
+  }, [user]);
 
   // フィルタリング
   const filteredRecords = useMemo(() => {
@@ -82,9 +89,11 @@ export function History() {
   }, [filteredRecords]);
 
   // 削除ハンドラ
-  const handleDelete = (id: string) => {
-    deleteRunRecord(id);
-    setRecords((prev) => prev.filter((r) => r.id !== id));
+  const handleDelete = async (id: string) => {
+    if (!user) return;
+
+    // Firestoreから削除（リアルタイム同期で自動的にローカル状態も更新される）
+    await deleteRunRecord(user.uid, id);
   };
 
   // 現在のフィルターの表示ラベルを取得
