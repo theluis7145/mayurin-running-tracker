@@ -87,26 +87,26 @@ export function RecordDetail() {
           <div className="bg-white rounded-lg shadow-md p-6">
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-sky-50 rounded-lg">
-                <div className="text-3xl font-bold text-sky-700">
+                <div className="text-lg sm:text-xl font-bold text-sky-700">
                   {formatTime(record.duration)}
                 </div>
-                <div className="text-sm text-gray-500 mt-1">総時間</div>
+                <div className="text-xs sm:text-sm text-gray-500 mt-1">総時間</div>
               </div>
               <div className="text-center p-4 bg-sun-50 rounded-lg">
-                <div className="text-3xl font-bold text-sun-700">
+                <div className="text-lg sm:text-xl font-bold text-sun-700">
                   {formatDistance(record.distance)}
                 </div>
-                <div className="text-sm text-gray-500 mt-1">総距離</div>
+                <div className="text-xs sm:text-sm text-gray-500 mt-1">総距離</div>
               </div>
               <div className="text-center p-4 bg-sky-50 rounded-lg">
-                <div className="text-3xl font-bold text-sky-700">
+                <div className="text-lg sm:text-xl font-bold text-sky-700">
                   {formatSpeed(record.averagePace)} km/h
                 </div>
-                <div className="text-sm text-gray-500 mt-1">平均時速</div>
+                <div className="text-xs sm:text-sm text-gray-500 mt-1">平均時速</div>
               </div>
               <div className="text-center p-4 bg-sun-50 rounded-lg">
-                <div className="text-3xl font-bold text-sun-700">{record.laps.length}</div>
-                <div className="text-sm text-gray-500 mt-1">ラップ数</div>
+                <div className="text-lg sm:text-xl font-bold text-sun-700">{record.laps.length}</div>
+                <div className="text-xs sm:text-sm text-gray-500 mt-1">ラップ数</div>
               </div>
             </div>
           </div>
