@@ -16,15 +16,15 @@ export function ControlButtons({
   onLap,
 }: ControlButtonsProps) {
   return (
-    <div className="flex flex-col items-center gap-3 py-3 sm:py-4 md:py-8 px-4">
+    <div className="flex flex-col items-center gap-6 py-8 sm:py-10 md:py-12">
       {/* メインボタン */}
-      <div className="flex gap-4 sm:gap-6">
+      <div className="flex gap-6 sm:gap-8">
         {status === 'idle' && (
           <button
             onClick={onStart}
-            className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white font-bold text-xl shadow-lg active:shadow-xl active:scale-95 transition-all duration-150"
+            className="px-12 py-6 sm:px-16 sm:py-7 rounded-full bg-white text-black font-bold text-lg sm:text-xl tracking-wide hover:bg-gray-100 active:scale-95 transition-all duration-150 shadow-2xl"
           >
-            スタート
+            START
           </button>
         )}
 
@@ -32,15 +32,15 @@ export function ControlButtons({
           <>
             <button
               onClick={onPause}
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-sun-400 to-sun-600 text-white font-bold text-xl shadow-lg active:shadow-xl active:scale-95 transition-all duration-150"
+              className="px-10 py-5 sm:px-12 sm:py-6 rounded-full bg-white text-black font-bold text-base sm:text-lg tracking-wide hover:bg-gray-100 active:scale-95 transition-all duration-150"
             >
-              一時停止
+              PAUSE
             </button>
             <button
               onClick={onLap}
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-sky-300 to-sky-500 text-white font-bold text-xl shadow-lg active:shadow-xl active:scale-95 transition-all duration-150"
+              className="px-10 py-5 sm:px-12 sm:py-6 rounded-full bg-gray-800 border-2 border-white text-white font-bold text-base sm:text-lg tracking-wide hover:bg-gray-700 active:scale-95 transition-all duration-150"
             >
-              ラップ
+              LAP
             </button>
           </>
         )}
@@ -49,15 +49,15 @@ export function ControlButtons({
           <>
             <button
               onClick={onStart}
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white font-bold text-xl shadow-lg active:shadow-xl active:scale-95 transition-all duration-150"
+              className="px-10 py-5 sm:px-12 sm:py-6 rounded-full bg-white text-black font-bold text-base sm:text-lg tracking-wide hover:bg-gray-100 active:scale-95 transition-all duration-150"
             >
-              再開
+              RESUME
             </button>
             <button
               onClick={onReset}
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-sunset-400 to-sunset-600 text-white font-bold text-xl shadow-lg active:shadow-xl active:scale-95 transition-all duration-150"
+              className="px-10 py-5 sm:px-12 sm:py-6 rounded-full bg-red-600 text-white font-bold text-base sm:text-lg tracking-wide hover:bg-red-700 active:scale-95 transition-all duration-150"
             >
-              終了
+              FINISH
             </button>
           </>
         )}

@@ -109,12 +109,12 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 safe-bottom">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-black safe-bottom">
+      <div className="max-w-4xl mx-auto px-6">
         {/* GPS エラー表示 */}
         {gpsError && (
-          <div className="mx-4 mt-4 p-3 bg-sunset-100 border border-sunset-300 rounded-lg text-sunset-800 text-sm">
-            <span className="font-semibold">警告:</span> {gpsError}
+          <div className="mt-8 p-4 bg-red-900 bg-opacity-20 border border-red-500 rounded-3xl text-red-400 text-sm">
+            <span className="font-bold">警告:</span> {gpsError}
           </div>
         )}
 
@@ -123,12 +123,12 @@ export function Home() {
 
         {/* 統計表示 */}
         {status !== 'idle' && (
-          <div className="flex justify-center py-2 px-4">
-            <div className="text-center min-w-[100px]">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-sky-700 mb-1">
+          <div className="flex justify-center py-8">
+            <div className="text-center">
+              <div className="text-sm sm:text-base text-gray-400 font-semibold tracking-wide mb-2">DISTANCE</div>
+              <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-white">
                 {formatDistance(distance)}
               </div>
-              <div className="text-sm sm:text-base text-gray-500 font-medium">距離</div>
             </div>
           </div>
         )}
@@ -147,33 +147,30 @@ export function Home() {
 
         {/* GPS使用の説明（初回のみ） */}
         {status === 'idle' && (
-          <div className="mx-4 mt-6 p-4 bg-white rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold text-sky-800 mb-3 flex items-center gap-2">
-              <svg className="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              使い方
+          <div className="mt-12 p-8 bg-gray-900 rounded-3xl border border-gray-800">
+            <h3 className="text-xl font-bold text-white mb-6 tracking-tight">
+              HOW TO USE
             </h3>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-0.5">1.</span>
-                <span>スタートボタンを押すとGPS追跡が開始されます</span>
+            <ul className="space-y-4 text-sm text-gray-300">
+              <li className="flex items-start gap-3">
+                <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">1</span>
+                <span>Press START to begin GPS tracking</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-0.5">2.</span>
-                <span>走行距離が自動的に計算されます</span>
+              <li className="flex items-start gap-3">
+                <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">2</span>
+                <span>Distance is automatically calculated</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-0.5">3.</span>
-                <span>ラップボタンで区間タイムを記録できます</span>
+              <li className="flex items-start gap-3">
+                <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">3</span>
+                <span>Record lap times with LAP button</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-0.5">4.</span>
-                <span>一時停止後、終了ボタンで記録を保存します</span>
+              <li className="flex items-start gap-3">
+                <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">4</span>
+                <span>Pause, then FINISH to save your run</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-sky-600 font-bold mt-0.5">5.</span>
-                <span>履歴画面で走行ルートの地図を確認できます</span>
+              <li className="flex items-start gap-3">
+                <span className="text-white font-bold bg-white text-black w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">5</span>
+                <span>View route map in History</span>
               </li>
             </ul>
           </div>
