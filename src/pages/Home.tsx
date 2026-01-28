@@ -8,7 +8,6 @@ import { RunRecord } from '../types';
 import { Timer } from '../components/Timer';
 import { ControlButtons } from '../components/ControlButtons';
 import { LapList } from '../components/LapList';
-import { Map } from '../components/Map';
 import { CompletionModal } from '../components/CompletionModal';
 
 interface CompletionData {
@@ -22,7 +21,6 @@ export function Home() {
   const { elapsedTime, status, laps, start, pause, reset, recordLap } = useTimer();
   const {
     coordinates,
-    currentPosition,
     isTracking,
     error: gpsError,
     startTracking,
@@ -120,17 +118,6 @@ export function Home() {
           </div>
         )}
 
-        {/* 地図表示（一時停止中のみ、デスクトップでは常に表示） */}
-        {status !== 'idle' && coordinates.length > 0 && (
-          <div className={`px-4 pt-3 ${status === 'running' ? 'hidden md:block' : ''}`}>
-            <Map
-              coordinates={coordinates}
-              currentPosition={currentPosition}
-              className={`${status === 'paused' ? 'h-40 sm:h-48' : 'h-64'} md:h-80`}
-            />
-          </div>
-        )}
-
         {/* タイマー表示 */}
         <Timer elapsedTime={elapsedTime} />
 
@@ -174,11 +161,11 @@ export function Home() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-sky-600 font-bold mt-0.5">2.</span>
-                <span>走行ルートがリアルタイムで地図に表示されます</span>
+                <span>走行距離が自動的に計算されます</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-sky-600 font-bold mt-0.5">3.</span>
-                <span>距離とペースが自動的に計算されます</span>
+                <span>ラップボタンで区間タイムを記録できます</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-sky-600 font-bold mt-0.5">4.</span>
@@ -186,7 +173,7 @@ export function Home() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-sky-600 font-bold mt-0.5">5.</span>
-                <span>完了時に励ましメッセージが表示されます</span>
+                <span>履歴画面で走行ルートの地図を確認できます</span>
               </li>
             </ul>
           </div>
