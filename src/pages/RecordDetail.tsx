@@ -33,7 +33,7 @@ export function RecordDetail() {
 
   if (!record) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 pb-20">
+      <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 safe-bottom">
         <div className="max-w-2xl mx-auto p-6">
           <div className="bg-white rounded-lg shadow-md p-12 text-center">
             <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
@@ -55,7 +55,7 @@ export function RecordDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 safe-bottom">
       <div className="max-w-2xl mx-auto">
         {/* ヘッダー */}
         <div className="bg-gradient-to-r from-sky-400 to-sun-400 text-white p-6 shadow-md">

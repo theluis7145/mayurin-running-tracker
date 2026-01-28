@@ -49,8 +49,8 @@ export function CompletionModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black bg-opacity-50 animate-in fade-in duration-200">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
         {/* ヘッダー */}
         <div className={`bg-gradient-to-r ${getCategoryColor()} text-white p-6 text-center`}>
           <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
@@ -68,29 +68,29 @@ export function CompletionModal({
           </div>
 
           {/* 統計情報 */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
-              <div className="text-2xl font-bold text-sky-700">{formatTime(duration)}</div>
-              <div className="text-xs text-gray-500 mt-1 font-medium">タイム</div>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
+              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatTime(duration)}</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">タイム</div>
             </div>
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
-              <div className="text-2xl font-bold text-sky-700">{formatDistance(distance)}</div>
-              <div className="text-xs text-gray-500 mt-1 font-medium">距離</div>
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
+              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatDistance(distance)}</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">距離</div>
             </div>
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
-              <div className="text-2xl font-bold text-sky-700">{formatPace(pace)}</div>
-              <div className="text-xs text-gray-500 mt-1 font-medium">平均ペース</div>
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
+              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatPace(pace)}</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">平均ペース</div>
             </div>
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 text-center hover:border-sky-200 transition-colors">
-              <div className="text-2xl font-bold text-sky-700">{lapsCount}</div>
-              <div className="text-xs text-gray-500 mt-1 font-medium">ラップ数</div>
+            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
+              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{lapsCount}</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">ラップ数</div>
             </div>
           </div>
 
           {/* 閉じるボタン */}
           <button
             onClick={onClose}
-            className="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:from-sky-600 hover:to-sky-700 active:scale-[0.98] transition-all duration-200"
+            className="w-full py-4 sm:py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold text-lg rounded-lg shadow-md active:shadow-lg active:scale-[0.98] transition-all duration-150"
           >
             閉じる
           </button>

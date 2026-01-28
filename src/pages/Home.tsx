@@ -111,7 +111,7 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 safe-bottom">
       <div className="max-w-2xl mx-auto">
         {/* GPS エラー表示 */}
         {gpsError && (

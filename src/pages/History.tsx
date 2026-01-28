@@ -91,7 +91,7 @@ export function History() {
   const currentFilterLabel = filterOptions.find((opt) => opt.key === filter)?.displayLabel || '全期間';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 safe-bottom">
       <div className="max-w-2xl mx-auto p-6">
         <h1 className="text-3xl font-bold text-sky-800 mb-6">走行履歴</h1>
 

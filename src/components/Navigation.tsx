@@ -35,8 +35,8 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
-      <div className="flex justify-around items-center h-16 max-w-2xl mx-auto">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      <div className="flex justify-around items-center h-16 sm:h-20 max-w-2xl mx-auto">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
@@ -46,13 +46,13 @@ export function Navigation() {
               className={`flex flex-col items-center justify-center flex-1 h-full transition-all duration-200 ${
                 isActive
                   ? 'text-sky-600 bg-sky-50'
-                  : 'text-gray-500 hover:text-sky-500 hover:bg-gray-50'
+                  : 'text-gray-500 active:text-sky-500 active:bg-gray-50'
               }`}
             >
-              <div className={`transition-transform duration-200 ${isActive ? 'scale-110' : ''}`}>
+              <div className={`transition-transform duration-150 ${isActive ? 'scale-110' : ''}`}>
                 {item.icon}
               </div>
-              <span className={`text-xs mt-1 font-medium ${isActive ? 'font-semibold' : ''}`}>
+              <span className={`text-xs sm:text-sm mt-1 font-medium ${isActive ? 'font-semibold' : ''}`}>
                 {item.label}
               </span>
             </Link>
