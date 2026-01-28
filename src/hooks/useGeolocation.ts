@@ -37,7 +37,7 @@ export function useGeolocation(options: GeolocationOptions = {}) {
     if (!navigator.geolocation) {
       setState((prev) => ({
         ...prev,
-        error: 'お使いのブラウザはGPSに対応していません',
+        error: 'お使いのブラウザはGPSに対応してないみたい',
       }));
       return;
     }
@@ -68,17 +68,17 @@ export function useGeolocation(options: GeolocationOptions = {}) {
         }));
       },
       (error) => {
-        let errorMessage = 'GPS位置情報の取得に失敗しました';
+        let errorMessage = 'GPS位置情報の取得に失敗しちゃった';
 
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            errorMessage = 'GPS位置情報の使用が拒否されました。ブラウザの設定を確認してください。';
+            errorMessage = 'GPS位置情報の使用が拒否されちゃった。ブラウザの設定を確認してね';
             break;
           case error.POSITION_UNAVAILABLE:
-            errorMessage = 'GPS位置情報を取得できません';
+            errorMessage = 'GPS位置情報を取得できないみたい';
             break;
           case error.TIMEOUT:
-            errorMessage = 'GPS位置情報の取得がタイムアウトしました';
+            errorMessage = 'GPS位置情報の取得がタイムアウトしちゃった';
             break;
         }
 

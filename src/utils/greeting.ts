@@ -5,13 +5,13 @@ export function getGreetingMessage(nickname: string): string {
   const hour = new Date().getHours();
 
   if (hour >= 5 && hour < 12) {
-    return `おはようございます、${nickname}さん`;
+    return `おはよう、${nickname}ちゃん！`;
   } else if (hour >= 12 && hour < 17) {
-    return `こんにちは、${nickname}さん`;
+    return `こんにちは、${nickname}ちゃん！`;
   } else if (hour >= 17 && hour < 21) {
-    return `こんばんは、${nickname}さん`;
+    return `こんばんは、${nickname}ちゃん！`;
   } else {
-    return `お疲れ様です、${nickname}さん`;
+    return `お疲れ様、${nickname}ちゃん！`;
   }
 }
 

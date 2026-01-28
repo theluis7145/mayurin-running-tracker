@@ -58,7 +58,7 @@ export function CompletionModal({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold">完走おめでとうございます</h2>
+          <h2 className="text-2xl font-bold">完走おめでとう！</h2>
         </div>
 
         {/* メッセージ */}

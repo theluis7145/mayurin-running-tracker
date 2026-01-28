@@ -19,13 +19,13 @@ export function ProfileImagePicker({ currentImage, onImageSelect }: ProfileImage
 
     // 画像ファイルかチェック
     if (!isImageFile(file)) {
-      setError('画像ファイルを選択してください');
+      setError('画像ファイルを選択してね');
       return;
     }
 
     // ファイルサイズチェック（10MB以上は警告）
     if (file.size > 10 * 1024 * 1024) {
-      setError('ファイルサイズが大きすぎます（10MB以下推奨）');
+      setError('ファイルサイズが大きすぎるよ（10MB以下にしてね）');
       return;
     }
 
@@ -40,7 +40,7 @@ export function ProfileImagePicker({ currentImage, onImageSelect }: ProfileImage
 
       onImageSelect(base64);
     } catch (err) {
-      setError('画像の処理に失敗しました');
+      setError('画像の処理に失敗しちゃった');
       console.error(err);
     } finally {
       setIsProcessing(false);
@@ -68,7 +68,9 @@ export function ProfileImagePicker({ currentImage, onImageSelect }: ProfileImage
         {currentImage ? (
           <img src={currentImage} alt="プロフィール" className="w-full h-full object-cover" />
         ) : (
-          <span className="text-6xl">👤</span>
+          <svg className="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
         )}
       </div>
 
