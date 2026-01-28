@@ -1,5 +1,5 @@
 import { RunRecord } from '../types';
-import { formatDate, formatTimeOfDay, formatTime, formatDistance, formatPace } from '../utils/format';
+import { formatDate, formatTimeOfDay, formatTime, formatDistance, formatSpeed } from '../utils/format';
 import { Link } from 'react-router-dom';
 
 interface HistoryCardProps {
@@ -62,9 +62,9 @@ export function HistoryCard({ record, onDelete }: HistoryCardProps) {
           </div>
           <div className="text-center">
             <div className="text-xl font-bold text-sky-700">
-              {formatPace(record.averagePace)}
+              {formatSpeed(record.averagePace)} km/h
             </div>
-            <div className="text-xs text-gray-500">ペース</div>
+            <div className="text-xs text-gray-500">時速</div>
           </div>
         </div>
 

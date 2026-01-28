@@ -1,5 +1,5 @@
 import { Lap } from '../types';
-import { formatTime, formatDistance, formatPace } from '../utils/format';
+import { formatTime, formatDistance, formatSpeed } from '../utils/format';
 
 interface LapListProps {
   laps: Lap[];
@@ -41,7 +41,7 @@ export function LapList({ laps }: LapListProps) {
                 )}
                 {lap.pace > 0 && (
                   <div className="text-xs text-gray-500">
-                    {formatPace(lap.pace)}/km
+                    {formatSpeed(lap.pace)} km/h
                   </div>
                 )}
               </div>

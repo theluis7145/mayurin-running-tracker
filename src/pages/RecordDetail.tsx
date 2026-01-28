@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { RunRecord } from '../types';
 import { getRunRecordById, deleteRunRecord } from '../utils/storage';
-import { formatDate, formatTimeOfDay, formatTime, formatDistance, formatPace } from '../utils/format';
+import { formatDate, formatTimeOfDay, formatTime, formatDistance, formatSpeed } from '../utils/format';
 import { Map } from '../components/Map';
 import { LapList } from '../components/LapList';
 
@@ -100,9 +100,9 @@ export function RecordDetail() {
               </div>
               <div className="text-center p-4 bg-sky-50 rounded-lg">
                 <div className="text-3xl font-bold text-sky-700">
-                  {formatPace(record.averagePace)}
+                  {formatSpeed(record.averagePace)} km/h
                 </div>
-                <div className="text-sm text-gray-500 mt-1">平均ペース</div>
+                <div className="text-sm text-gray-500 mt-1">平均時速</div>
               </div>
               <div className="text-center p-4 bg-sun-50 rounded-lg">
                 <div className="text-3xl font-bold text-sun-700">{record.laps.length}</div>
