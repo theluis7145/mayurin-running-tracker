@@ -55,24 +55,24 @@ export function RecordDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 safe-bottom">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-black safe-bottom">
+      <div className="max-w-4xl mx-auto">
         {/* ヘッダー */}
-        <div className="bg-gradient-to-r from-sky-400 to-sun-400 text-white p-6 shadow-md">
+        <div className="bg-black text-white px-6 py-8 border-b border-gray-900">
           <button
             onClick={handleBack}
-            className="text-white hover:text-sky-100 mb-4 flex items-center gap-2"
+            className="text-gray-400 hover:text-white mb-6 flex items-center gap-2 font-semibold text-sm tracking-wide"
           >
-            ← 履歴に戻る
+            ← BACK TO HISTORY
           </button>
-          <h1 className="text-2xl font-bold">{formatDate(record.startTime)}</h1>
-          <p className="text-sky-100 mt-1">{formatTimeOfDay(record.startTime)} 開始</p>
+          <h1 className="text-3xl font-bold tracking-tight">{formatDate(record.startTime)}</h1>
+          <p className="text-gray-400 mt-2 text-sm tracking-wide">{formatTimeOfDay(record.startTime)} START</p>
         </div>
 
         {/* 地図 */}
         {record.coordinates.length > 0 && (
-          <div className="px-4 pt-6">
-            <h2 className="text-lg font-semibold text-sky-800 mb-3">走行ルート</h2>
+          <div className="px-6 pt-8">
+            <h2 className="text-sm font-bold text-gray-400 mb-4 tracking-wider">ROUTE</h2>
             <Map
               coordinates={record.coordinates}
               currentPosition={null}
@@ -82,31 +82,31 @@ export function RecordDetail() {
         )}
 
         {/* 統計情報 */}
-        <div className="px-4 pt-6">
-          <h2 className="text-lg font-semibold text-sky-800 mb-3">記録サマリー</h2>
-          <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="px-6 pt-8">
+          <h2 className="text-sm font-bold text-gray-400 mb-4 tracking-wider">SUMMARY</h2>
+          <div className="bg-gray-900 rounded-3xl p-6 border border-gray-800">
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-4 bg-sky-50 rounded-lg">
-                <div className="text-lg sm:text-xl font-bold text-sky-700">
+              <div className="text-center p-4 bg-gray-800 rounded-2xl">
+                <div className="text-xl font-bold text-white">
                   {formatTime(record.duration)}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1">総時間</div>
+                <div className="text-[10px] text-gray-400 mt-2 font-semibold tracking-wide">TIME</div>
               </div>
-              <div className="text-center p-4 bg-sun-50 rounded-lg">
-                <div className="text-lg sm:text-xl font-bold text-sun-700">
+              <div className="text-center p-4 bg-gray-800 rounded-2xl">
+                <div className="text-xl font-bold text-white">
                   {formatDistance(record.distance)}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1">総距離</div>
+                <div className="text-[10px] text-gray-400 mt-2 font-semibold tracking-wide">DISTANCE</div>
               </div>
-              <div className="text-center p-4 bg-sky-50 rounded-lg">
-                <div className="text-lg sm:text-xl font-bold text-sky-700">
+              <div className="text-center p-4 bg-gray-800 rounded-2xl">
+                <div className="text-xl font-bold text-white">
                   {formatSpeed(record.averagePace)} km/h
                 </div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1">平均時速</div>
+                <div className="text-[10px] text-gray-400 mt-2 font-semibold tracking-wide">AVG SPEED</div>
               </div>
-              <div className="text-center p-4 bg-sun-50 rounded-lg">
-                <div className="text-lg sm:text-xl font-bold text-sun-700">{record.laps.length}</div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1">ラップ数</div>
+              <div className="text-center p-4 bg-gray-800 rounded-2xl">
+                <div className="text-xl font-bold text-white">{record.laps.length}</div>
+                <div className="text-[10px] text-gray-400 mt-2 font-semibold tracking-wide">LAPS</div>
               </div>
             </div>
           </div>
@@ -114,20 +114,20 @@ export function RecordDetail() {
 
         {/* ラップ詳細 */}
         {record.laps.length > 0 && (
-          <div className="px-4 pt-6">
+          <div className="px-6 pt-8">
             <LapList laps={record.laps} />
           </div>
         )}
 
         {/* GPS情報 */}
         {record.coordinates.length > 0 && (
-          <div className="px-4 pt-6">
-            <div className="bg-white rounded-lg shadow-md p-4">
-              <h3 className="text-sm font-semibold text-gray-700 mb-2">GPS情報</h3>
-              <div className="text-sm text-gray-600">
-                <p>記録点数: {record.coordinates.length}点</p>
+          <div className="px-6 pt-8">
+            <div className="bg-gray-900 rounded-3xl p-5 border border-gray-800">
+              <h3 className="text-xs font-bold text-gray-400 mb-3 tracking-wider">GPS DATA</h3>
+              <div className="text-sm text-gray-300 space-y-1">
+                <p>Points: {record.coordinates.length}</p>
                 <p>
-                  平均精度: ±
+                  Avg Accuracy: ±
                   {Math.round(
                     record.coordinates.reduce((sum, c) => sum + c.accuracy, 0) /
                       record.coordinates.length
@@ -140,12 +140,12 @@ export function RecordDetail() {
         )}
 
         {/* 削除ボタン */}
-        <div className="px-4 pt-6 pb-6">
+        <div className="px-6 pt-8 pb-8">
           <button
             onClick={handleDelete}
-            className="w-full py-3 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition-colors duration-200"
+            className="w-full py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition-colors duration-200 tracking-wide"
           >
-            この記録を削除
+            DELETE THIS RECORD
           </button>
         </div>
       </div>

@@ -30,69 +30,51 @@ export function CompletionModal({
 
   if (!isOpen) return null;
 
-  // カテゴリーごとの背景色
-  const getCategoryColor = () => {
-    switch (message.category) {
-      case 'beauty':
-        return 'from-sunset-400 to-sunset-600';
-      case 'achievement':
-        return 'from-sun-400 to-sun-600';
-      case 'support':
-        return 'from-sky-400 to-sky-600';
-      case 'health':
-        return 'from-green-400 to-green-600';
-      case 'humor':
-        return 'from-purple-400 to-purple-600';
-      default:
-        return 'from-sky-400 to-sky-600';
-    }
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black bg-opacity-50 animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black bg-opacity-90 animate-in fade-in duration-200">
+      <div className="bg-gray-900 border-2 border-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
         {/* ヘッダー */}
-        <div className={`bg-gradient-to-r ${getCategoryColor()} text-white p-6 text-center`}>
-          <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-black text-white p-8 text-center border-b border-gray-800">
+          <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white flex items-center justify-center">
+            <svg className="w-12 h-12 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold">完走おめでとう！</h2>
+          <h2 className="text-3xl font-bold tracking-tight">RUN COMPLETE</h2>
         </div>
 
         {/* メッセージ */}
         <div className="p-6">
-          <div className="bg-gradient-to-r from-sky-50 to-sun-50 rounded-lg p-4 mb-6 border border-gray-100">
-            <p className="text-lg text-gray-800 text-center leading-relaxed">{message.text}</p>
+          <div className="bg-gray-800 rounded-2xl p-5 mb-6 border border-gray-700">
+            <p className="text-base text-gray-200 text-center leading-relaxed">{message.text}</p>
           </div>
 
           {/* 統計情報 */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
-              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatTimeSimple(duration)}</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">タイム</div>
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center">
+              <div className="text-2xl font-bold text-white">{formatTimeSimple(duration)}</div>
+              <div className="text-[10px] text-gray-400 mt-2 font-bold tracking-wider">TIME</div>
             </div>
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
-              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatDistance(distance)}</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">距離</div>
+            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center">
+              <div className="text-2xl font-bold text-white">{formatDistance(distance)}</div>
+              <div className="text-[10px] text-gray-400 mt-2 font-bold tracking-wider">DISTANCE</div>
             </div>
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
-              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{formatSpeed(pace)} km/h</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">平均時速</div>
+            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center">
+              <div className="text-2xl font-bold text-white">{formatSpeed(pace)} km/h</div>
+              <div className="text-[10px] text-gray-400 mt-2 font-bold tracking-wider">AVG SPEED</div>
             </div>
-            <div className="bg-white border-2 border-gray-100 rounded-lg p-4 sm:p-5 text-center transition-colors">
-              <div className="text-2xl sm:text-3xl font-bold text-sky-700">{lapsCount}</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">ラップ数</div>
+            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-4 text-center">
+              <div className="text-2xl font-bold text-white">{lapsCount}</div>
+              <div className="text-[10px] text-gray-400 mt-2 font-bold tracking-wider">LAPS</div>
             </div>
           </div>
 
           {/* 閉じるボタン */}
           <button
             onClick={onClose}
-            className="w-full py-4 sm:py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold text-lg rounded-lg shadow-md active:shadow-lg active:scale-[0.98] transition-all duration-150"
+            className="w-full py-4 bg-white text-black font-bold text-base rounded-full active:scale-95 transition-all duration-150 tracking-wide"
           >
-            閉じる
+            CLOSE
           </button>
         </div>
       </div>

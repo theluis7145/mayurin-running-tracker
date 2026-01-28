@@ -91,21 +91,21 @@ export function History() {
   const currentFilterLabel = filterOptions.find((opt) => opt.key === filter)?.displayLabel || '全期間';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 safe-bottom">
-      <div className="max-w-2xl mx-auto p-6">
-        <h1 className="text-3xl font-bold text-sky-800 mb-6">走行履歴</h1>
+    <div className="min-h-screen bg-black safe-bottom">
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <h1 className="text-4xl font-bold text-white mb-8 tracking-tight">HISTORY</h1>
 
         {/* フィルター（横スクロール対応） */}
-        <div className="mb-6">
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="mb-8">
+          <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
             {filterOptions.map((option) => (
               <button
                 key={option.key}
                 onClick={() => setFilter(option.key)}
-                className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors flex-shrink-0 ${
+                className={`px-6 py-3 rounded-full font-bold whitespace-nowrap transition-all flex-shrink-0 ${
                   filter === option.key
-                    ? 'bg-sky-500 text-white'
-                    : 'bg-white text-gray-700 hover:bg-sky-50'
+                    ? 'bg-white text-black'
+                    : 'bg-gray-900 text-gray-400 hover:bg-gray-800 border border-gray-800'
                 }`}
               >
                 {option.label}
@@ -116,20 +116,20 @@ export function History() {
 
         {/* 統計サマリー */}
         {filteredRecords.length > 0 && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h2 className="text-lg font-semibold text-sky-800 mb-4">
-              統計（{currentFilterLabel}）
+          <div className="bg-gray-900 rounded-3xl p-8 mb-8 border border-gray-800">
+            <h2 className="text-sm font-bold text-gray-400 mb-6 tracking-wider">
+              STATS ({currentFilterLabel})
             </h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-sky-700">{stats.totalRuns}</div>
-                <div className="text-sm text-gray-500 mt-1">総走行回数</div>
+                <div className="text-4xl font-bold text-white mb-2">{stats.totalRuns}</div>
+                <div className="text-xs text-gray-400 font-semibold tracking-wide">TOTAL RUNS</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-sky-700">
+                <div className="text-4xl font-bold text-white mb-2">
                   {formatDistance(stats.totalDistance)}
                 </div>
-                <div className="text-sm text-gray-500 mt-1">総走行距離</div>
+                <div className="text-xs text-gray-400 font-semibold tracking-wide">TOTAL DISTANCE</div>
               </div>
             </div>
           </div>
@@ -137,19 +137,19 @@ export function History() {
 
         {/* 記録一覧 */}
         {filteredRecords.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-md p-12 text-center">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-sky-50 flex items-center justify-center">
-              <svg className="w-12 h-12 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-gray-900 rounded-3xl p-16 text-center border border-gray-800">
+            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-800 flex items-center justify-center">
+              <svg className="w-14 h-14 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <p className="text-gray-600 text-lg mb-2 font-medium">
+            <p className="text-white text-xl mb-3 font-bold">
               {filter === 'all'
-                ? 'まだ記録がありません'
-                : 'この期間の記録がありません'}
+                ? 'No Records Yet'
+                : 'No Records in This Period'}
             </p>
-            <p className="text-gray-500 text-sm">
-              ランニングを開始して、記録を保存しましょう
+            <p className="text-gray-400 text-sm">
+              Start running and save your records
             </p>
           </div>
         ) : (

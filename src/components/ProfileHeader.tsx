@@ -26,7 +26,7 @@ export function ProfileHeader({ profile }: ProfileHeaderProps) {
         </div>
         <div className="flex-1 min-w-0">
           <h1 className="text-2xl sm:text-3xl font-bold truncate tracking-tight">{greeting}</h1>
-          <p className="text-sm text-gray-400 mt-1 tracking-wide">JUST DO IT</p>
+          <p className="text-sm text-gray-400 mt-1 tracking-wide">RUNNING TRACKER</p>
         </div>
       </div>
     </div>
