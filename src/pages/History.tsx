@@ -4,9 +4,27 @@ import { RunRecord } from '../types';
 import { HistoryCard } from '../components/HistoryCard';
 import { formatDistance } from '../utils/format';
 
+type FilterType = 'all' | 'week' | 'month' | '3months' | '6months' | 'year' | '2years';
+
+interface FilterOption {
+  key: FilterType;
+  label: string;
+  displayLabel: string;
+}
+
+const filterOptions: FilterOption[] = [
+  { key: 'all', label: '全て', displayLabel: '全期間' },
+  { key: 'week', label: '1週間', displayLabel: '過去7日' },
+  { key: 'month', label: '1ヶ月', displayLabel: '過去30日' },
+  { key: '3months', label: '3ヶ月', displayLabel: '過去3ヶ月' },
+  { key: '6months', label: '6ヶ月', displayLabel: '過去6ヶ月' },
+  { key: 'year', label: '1年', displayLabel: '過去1年' },
+  { key: '2years', label: '2年', displayLabel: '過去2年' },
+];
+
 export function History() {
   const [records, setRecords] = useState<RunRecord[]>([]);
-  const [filter, setFilter] = useState<'all' | 'week' | 'month'>('all');
+  const [filter, setFilter] = useState<FilterType>('all');
 
   // 記録を読み込み
   useEffect(() => {
@@ -23,10 +41,25 @@ export function History() {
     const now = new Date();
     const filterDate = new Date();
 
-    if (filter === 'week') {
-      filterDate.setDate(now.getDate() - 7);
-    } else if (filter === 'month') {
-      filterDate.setMonth(now.getMonth() - 1);
+    switch (filter) {
+      case 'week':
+        filterDate.setDate(now.getDate() - 7);
+        break;
+      case 'month':
+        filterDate.setMonth(now.getMonth() - 1);
+        break;
+      case '3months':
+        filterDate.setMonth(now.getMonth() - 3);
+        break;
+      case '6months':
+        filterDate.setMonth(now.getMonth() - 6);
+        break;
+      case 'year':
+        filterDate.setFullYear(now.getFullYear() - 1);
+        break;
+      case '2years':
+        filterDate.setFullYear(now.getFullYear() - 2);
+        break;
     }
 
     return records.filter((record) => new Date(record.startTime) >= filterDate);
@@ -54,51 +87,38 @@ export function History() {
     setRecords((prev) => prev.filter((r) => r.id !== id));
   };
 
+  // 現在のフィルターの表示ラベルを取得
+  const currentFilterLabel = filterOptions.find((opt) => opt.key === filter)?.displayLabel || '全期間';
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-sun-50 pb-20">
       <div className="max-w-2xl mx-auto p-6">
         <h1 className="text-3xl font-bold text-sky-800 mb-6">走行履歴</h1>
 
-        {/* フィルター */}
-        <div className="flex gap-2 mb-6">
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              filter === 'all'
-                ? 'bg-sky-500 text-white'
-                : 'bg-white text-gray-700 hover:bg-sky-50'
-            }`}
-          >
-            全て
-          </button>
-          <button
-            onClick={() => setFilter('week')}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              filter === 'week'
-                ? 'bg-sky-500 text-white'
-                : 'bg-white text-gray-700 hover:bg-sky-50'
-            }`}
-          >
-            過去7日
-          </button>
-          <button
-            onClick={() => setFilter('month')}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              filter === 'month'
-                ? 'bg-sky-500 text-white'
-                : 'bg-white text-gray-700 hover:bg-sky-50'
-            }`}
-          >
-            過去30日
-          </button>
+        {/* フィルター（横スクロール対応） */}
+        <div className="mb-6">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            {filterOptions.map((option) => (
+              <button
+                key={option.key}
+                onClick={() => setFilter(option.key)}
+                className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors flex-shrink-0 ${
+                  filter === option.key
+                    ? 'bg-sky-500 text-white'
+                    : 'bg-white text-gray-700 hover:bg-sky-50'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* 統計サマリー */}
         {filteredRecords.length > 0 && (
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
             <h2 className="text-lg font-semibold text-sky-800 mb-4">
-              統計（
-              {filter === 'all' ? '全期間' : filter === 'week' ? '過去7日' : '過去30日'}）
+              統計（{currentFilterLabel}）
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
