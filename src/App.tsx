@@ -3,6 +3,7 @@ import { Home } from './pages/Home';
 import { History } from './pages/History';
 import { RecordDetail } from './pages/RecordDetail';
 import { Profile } from './pages/Profile';
+import Schedules from './pages/Schedules';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { ProfileHeader } from './components/ProfileHeader';
@@ -72,6 +73,20 @@ function AppContent() {
                 <ProfileHeader profile={profile} />
                 <main className="pb-16">
                   <Profile />
+                </main>
+                <Navigation />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/schedules"
+          element={
+            <ProtectedRoute>
+              <>
+                <ProfileHeader profile={profile} />
+                <main className="pb-16">
+                  <Schedules />
                 </main>
                 <Navigation />
               </>
